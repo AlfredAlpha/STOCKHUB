@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Registrar Equipamento - StockHub</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Registrar Novo Equipamento</h1>
+    <form method="POST">
+        <label>Modelo:</label><br>
+        <input type="text" name="modelo" required><br>
+        <label>Número de Série:</label><br>
+        <input type="text" name="numero_serie" required><br>
+        <label>Nome do Cliente:</label><br>
+        <input type="text" name="cliente_nome" required><br>
+        <label>Data de Instalação:</label><br>
+        <input type="date" name="data_instalacao" required><br><br>
+        <input type="submit" value="Registrar">
+    </form>
+    <a href="{{ url_for('index') }}">Voltar</a>
+</body>
+</html>

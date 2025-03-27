@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>StockHub - Gestão de Equipamentos</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>StockHub - Lista de Equipamentos</h1>
+    <a href="{{ url_for('register') }}">Registrar Novo Equipamento</a> | 
+    <a href="{{ url_for('search') }}">Buscar Equipamento</a>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Modelo</th>
+                <th>Número de Série</th>
+                <th>Cliente</th>
+                <th>Data de Instalação</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for equipamento in equipamentos %}
+            <tr>
+                <td>{{ equipamento.id }}</td>
+                <td>{{ equipamento.modelo }}</td>
+                <td>{{ equipamento.numero_serie }}</td>
+                <td>{{ equipamento.cliente_nome }}</td>
+                <td>{{ equipamento.data_instalacao }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

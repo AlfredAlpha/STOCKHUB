@@ -1,0 +1,95 @@
+/* Reset básico e estilo geral */
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    background-color: #333333; /* Grafite como fundo principal */
+    color: #f5f5f5; /* Cinza claro como cor de texto principal */
+}
+
+/* Cabeçalhos */
+h1 {
+    color: #FFC107; /* Amarelo da empresa */
+    border-bottom: 2px solid #f5f5f5; /* Cinza claro na borda inferior */
+    padding-bottom: 10px;
+}
+
+h2 {
+    color: #cccccc; /* Subtom de cinza mais escuro que #f5f5f5 */
+}
+
+/* Links */
+a {
+    color: #FFC107; /* Amarelo nos links */
+    text-decoration: none;
+    margin-right: 10px;
+}
+
+a:hover {
+    color: #e0a800; /* Subtom de amarelo mais escuro no hover */
+    text-decoration: underline;
+}
+
+/* Tabela */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background-color: #444444; /* Subtom de grafite mais claro para contraste */
+    box-shadow: 0 2px 5px rgba(245, 245, 245, 0.2); /* Sombra sutil em cinza claro */
+}
+
+th, td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #555555; /* Subtom de grafite médio */
+}
+
+th {
+    background-color: #f5f5f5; /* Cinza claro nos cabeçalhos da tabela */
+    color: #333333; /* Grafite no texto dos cabeçalhos */
+}
+
+td {
+    color: #f5f5f5; /* Cinza claro no texto das células */
+}
+
+/* Linhas da tabela com hover */
+tr:hover {
+    background-color: #fff8e1; /* Subtom suave de amarelo no hover */
+}
+
+/* Formulários */
+form {
+    margin-top: 20px;
+}
+
+label {
+    color: #f5f5f5; /* Cinza claro nos rótulos */
+    font-weight: bold;
+}
+
+input[type="text"],
+input[type="date"] {
+    width: 100%;
+    max-width: 300px;
+    padding: 8px;
+    margin: 5px 0 15px 0;
+    border: 1px solid #f5f5f5; /* Cinza claro na borda */
+    border-radius: 4px;
+    background-color: #444444; /* Subtom de grafite para fundo dos campos */
+    color: #f5f5f5; /* Texto em cinza claro */
+}
+
+input[type="submit"] {
+    background-color: #FFC107; /* Amarelo no botão */
+    color: #333333; /* Grafite no texto do botão */
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+input[type="submit"]:hover {
+    background-color: #e0a800; /* Subtom de amarelo mais escuro no hover */
+}
