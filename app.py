@@ -1,10 +1,11 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, send_file
 import mysql.connector
 from datetime import datetime
+import csv
+import io
 
 app = Flask(__name__)
 
-# Configuração do banco de dados MySQL
 db_config = {
     'host': 'localhost',
     'user': 'root',
@@ -12,11 +13,9 @@ db_config = {
     'database': 'stockhub_db'
 }
 
-# Função para conectar ao banco de dados
 def get_db_connection():
     return mysql.connector.connect(**db_config)
 
-# Rota para a página inicial (listagem de equipamentos)
 @app.route('/')
 def index():
     conn = get_db_connection()
@@ -27,7 +26,6 @@ def index():
     conn.close()
     return render_template('index.html', equipamentos=equipamentos)
 
-# Rota para registrar um novo equipamento
 @app.route('/register', methods=['GET', 'POST'])
 def register():
     if request.method == 'POST':
@@ -38,24 +36,31 @@ def register():
 
         conn = get_db_connection()
         cursor = conn.cursor()
-        try:
-            cursor.execute(
-                'INSERT INTO equipamentos (modelo, numero_serie, cliente_nome, data_instalacao) VALUES (%s, %s, %s, %s)',
-                (modelo, numero_serie, cliente_nome, data_instalacao)
-            )
-            conn.commit()
-        except mysql.connector.Error as err:
-            print(f"Erro: {err}")
-            return "Erro ao registrar equipamento", 500
-        finally:
-            cursor.close()
-            conn.close()
+        cursor.execute(
+            'INSERT INTO equipamentos (modelo, numero_serie, cliente_nome, data_instalacao) VALUES (%s, %s, %s, %s)',
+            (modelo, numero_serie, cliente_nome, data_instalacao)
+        )
+        conn.commit()
+        cursor.close()
+        conn.close()
         return redirect(url_for('index'))
     return render_template('register.html')
 
-# Rota para buscar equipamentos por número de série ou nome do cliente
+@app.route('/delete/<int:id>', methods=['GET', 'POST'])
+def delete(id):
+    if request.method == 'POST':
+        conn = get_db_connection()
+        cursor = conn.cursor()
+        cursor.execute('DELETE FROM equipamentos WHERE id = %s', (id,))
+        conn.commit()
+        cursor.close()
+        conn.close()
+        return redirect(url_for('index'))
+    return render_template('delete_confirm.html', id=id)
+
 @app.route('/search', methods=['GET', 'POST'])
 def search():
+    resultados = []
     if request.method == 'POST':
         termo = request.form['termo']
         conn = get_db_connection()
@@ -65,8 +70,23 @@ def search():
         resultados = cursor.fetchall()
         cursor.close()
         conn.close()
-        return render_template('search.html', resultados=resultados)
-    return render_template('search.html', resultados=[])
+    return render_template('search.html', resultados=resultados)
+
+@app.route('/relatorio')
+def relatorio():
+    conn = get_db_connection()
+    cursor = conn.cursor()
+    cursor.execute('SELECT * FROM equipamentos')
+    equipamentos = cursor.fetchall()
+    output = io.StringIO()
+    writer = csv.writer(output)
+    writer.writerow(['ID', 'Modelo', 'Número de Série', 'Cliente', 'Data de Instalação'])
+    for row in equipamentos:
+        writer.writerow(row)
+    output.seek(0)
+    cursor.close()
+    conn.close()
+    return send_file(io.BytesIO(output.getvalue().encode()), mimetype='text/csv', as_attachment=True, download_name='relatorio_equipamentos.csv')
 
 if __name__ == '__main__':
     app.run(debug=True)

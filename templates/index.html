@@ -2,21 +2,23 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <title>StockHub - Gestão de Equipamentos</title>
+    <title>StockHub - Equipamentos</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-    <h1>StockHub - Lista de Equipamentos</h1>
-    <a href="{{ url_for('register') }}">Registrar Novo Equipamento</a> | 
-    <a href="{{ url_for('search') }}">Buscar Equipamento</a>
-    <table border="1">
+    <h1>STOCKHUB desenvolvido para uso da OPTIFIBER</h1>
+    <a href="{{ url_for('register') }}">Registrar Equipamento</a> |
+    <a href="{{ url_for('search') }}">Buscar</a> |
+    <a href="{{ url_for('relatorio') }}">Baixar Relatório</a>
+    <table>
         <thead>
             <tr>
                 <th>ID</th>
                 <th>Modelo</th>
-                <th>Número de Série</th>
+                <th>Nº de Série</th>
                 <th>Cliente</th>
-                <th>Data de Instalação</th>
+                <th>Data</th>
+                <th>Ações</th>
             </tr>
         </thead>
         <tbody>
@@ -27,6 +29,9 @@
                 <td>{{ equipamento.numero_serie }}</td>
                 <td>{{ equipamento.cliente_nome }}</td>
                 <td>{{ equipamento.data_instalacao }}</td>
+                <td>
+                    <a href="{{ url_for('delete', id=equipamento.id) }}">Excluir</a>
+                </td>
             </tr>
             {% endfor %}
         </tbody>

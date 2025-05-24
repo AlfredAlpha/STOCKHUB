@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Confirmar Exclusão</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h2>Confirmar exclusão</h2>
+    <p>Deseja realmente excluir este equipamento?</p>
+    <form method="POST">
+        <button type="submit">Sim, excluir</button>
+        <a href="{{ url_for('index') }}">Cancelar</a>
+    </form>
+</body>
+</html>
