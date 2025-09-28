@@ -1,0 +1,158 @@
+Ótimo pedido, Alfredo 🙌
+Vou reestruturar o **README.md** no mesmo modelo do texto que você me passou, mas agora **adaptado para a Pixel Internet**, já incluindo as funcionalidades novas que discutimos (JavaScript, API, acessibilidade, nuvem, etc.).
+
+---
+
+# README.md – StockHub Pixel Internet
+
+## Sobre o Projeto
+
+**StockHub** é uma aplicação web desenvolvida para a **Pixel Internet**, com o objetivo de centralizar o registro e gerenciamento de modems, roteadores e outros equipamentos instalados nas residências dos clientes.
+
+A solução visa melhorar a gestão de inventário e o atendimento ao cliente, oferecendo uma interface acessível, moderna e eficiente, alinhada à identidade visual da Pixel Internet.
+
+---
+
+## Funcionalidades
+
+* **Registro de Equipamentos**: Cadastro de modems/roteadores com modelo, número de série, cliente e data de instalação.
+* **Listagem Completa**: Visualização de todos os equipamentos registrados.
+* **Busca Avançada**: Localize equipamentos por número de série ou nome do cliente.
+* **Exclusão de Registros**: Remoção segura de itens obsoletos ou com defeito.
+* **Relatórios**: Geração de relatórios em JSON para análise de dados e inventário.
+* **Autenticação de Usuários**: Controle de acesso via login (bcrypt para senhas seguras).
+* **Acessibilidade**: Interface responsiva, com cores de contraste baseadas na identidade visual da Pixel.
+* **APIs REST**: Endpoints básicos para integração futura com outros sistemas.
+* **Preparado para Nuvem**: Estrutura pronta para deploy em Render, Vercel ou Heroku.
+* **Controle de Versão**: Projeto versionado com Git/GitHub.
+
+---
+
+## Tecnologias Utilizadas
+
+* **Backend**: Python (Flask)
+* **Banco de Dados**: MySQL
+* **Frontend**: HTML, CSS, JavaScript
+* **Controle de Versão**: Git/GitHub
+* **API e Relatórios**: Flask + JSON
+* **Segurança**: Flask-Bcrypt para autenticação
+* **Deploy Futuro**: Render / Vercel / Heroku
+
+---
+
+## Pré-requisitos
+
+* Python 3.x
+* MySQL Server
+* Git
+
+---
+
+## Instalação
+
+1. **Clone o Repositório**
+
+   ```bash
+   git clone https://github.com/AlfredAlpha/STOCKHUB.git
+   cd STOCKHUB
+   ```
+
+2. **Instale as Dependências**
+
+   ```bash
+   pip install flask mysql-connector-python flask-bcrypt
+   ```
+
+3. **Configure o Banco de Dados**
+
+   ```sql
+   CREATE DATABASE stockhub_db;
+   USE stockhub_db;
+
+   CREATE TABLE equipamentos (
+       id INT AUTO_INCREMENT PRIMARY KEY,
+       modelo VARCHAR(100) NOT NULL,
+       numero_serie VARCHAR(50) UNIQUE NOT NULL,
+       cliente_nome VARCHAR(100) NOT NULL,
+       data_instalacao DATE NOT NULL
+   );
+
+   CREATE TABLE usuarios (
+       id INT AUTO_INCREMENT PRIMARY KEY,
+       nome VARCHAR(100) NOT NULL,
+       email VARCHAR(100) UNIQUE NOT NULL,
+       senha VARCHAR(255) NOT NULL
+   );
+   ```
+
+   No arquivo `app.py`, atualize as credenciais se necessário:
+
+   ```python
+   db_config = {
+       'host': 'localhost',
+       'user': 'root',
+       'password': 'sua_senha',
+       'database': 'stockhub_db'
+   }
+   ```
+
+4. **Execute a Aplicação**
+
+   ```bash
+   python app.py
+   ```
+
+   Acesse no navegador:
+   [http://127.0.0.1:5000/](http://127.0.0.1:5000/)
+
+---
+
+## Design
+
+* **Plano de Fundo**: mascote oficial da Pixel Internet (*vem-pra-pixel.png*).
+* **Cores**: Azul e verde neon (cores do mascote).
+* **Contraste**: Cinza claro e branco para leitura acessível.
+* **Responsividade**: Layout adaptado para desktop e mobile.
+
+---
+
+## Próximos Passos
+
+* Implementar edição de registros.
+* Criar relatórios de manutenção e inventário.
+* Melhorar dashboards com análise de dados.
+* Deploy em nuvem (Render, Vercel ou Heroku).
+
+---
+
+## Contribuição
+
+1. Faça um fork do repositório.
+2. Crie uma branch para sua feature:
+
+   ```bash
+   git checkout -b feature/nova-funcionalidade
+   ```
+3. Commit suas mudanças:
+
+   ```bash
+   git commit -m "Adiciona nova funcionalidade"
+   ```
+4. Envie para o GitHub:
+
+   ```bash
+   git push origin feature/nova-funcionalidade
+   ```
+5. Abra um Pull Request.
+
+---
+
+## Licença
+
+Este projeto é de uso interno da **Pixel Internet** e não possui licença pública no momento.
+
+---
+
+## Autoria
+
+Desenvolvido por **Alunos UNIVESP - PI 2 - Ciências da Computação** e equipe.

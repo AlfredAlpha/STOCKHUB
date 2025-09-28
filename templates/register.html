@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Registrar Equipamento</title>
+</head>
+<body>
+    <h1>Registrar Novo Equipamento</h1>
+    <form method="POST" action="{{ url_for('add_item') }}">
+        <label>Modelo:</label><input type="text" name="modelo" required><br>
+        <label>Nº de Série:</label><input type="text" name="numero_serie" required><br>
+        <label>Cliente:</label><input type="text" name="cliente_nome" required><br>
+        <input type="submit" value="Registrar">
+    </form>
+</body>
+</html>

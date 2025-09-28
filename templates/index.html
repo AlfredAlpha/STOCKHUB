@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>StockHub - Equipamentos</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>STOCKHUB desenvolvido para uso da Pixel Internet</h1>
+    <a href="{{ url_for('register') }}">Registrar Equipamento</a> |
+    <a href="{{ url_for('search') }}">Buscar</a> |
+    <a href="{{ url_for('report') }}">Baixar Relatório</a>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Modelo</th>
+                <th>Nº de Série</th>
+                <th>Cliente</th>
+                <th>Data</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for equipamento in equipamentos %}
+            <tr>
+                <td>{{ equipamento.id }}</td>
+                <td>{{ equipamento.modelo }}</td>
+                <td>{{ equipamento.numero_serie }}</td>
+                <td>{{ equipamento.cliente_nome }}</td>
+                <td>{{ equipamento.data_instalacao }}</td>
+                <td>
+                    <a href="{{ url_for('delete_item', id=equipamento.id) }}">Excluir</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
