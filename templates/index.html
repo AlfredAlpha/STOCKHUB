@@ -7,11 +7,18 @@
 </head>
 <body>
     <h1>STOCKHUB desenvolvido para uso da Pixel Internet</h1>
-    <a href="{{ url_for('register') }}">Registrar Equipamento</a> |
-    <a href="{{ url_for('search') }}">Buscar</a> |
-    <a href="{{ url_for('report') }}">Baixar Relatório</a>
-    <table>
-        <thead>
+    <nav>
+        <a href="{{ url_for('register') }}">Registrar Equipamento</a> |
+        <a href="{{ url_for('search') }}">Buscar</a> |
+        <a href="{{ url_for('generate_report') }}">Baixar Relatório JSON</a> |
+        <a href="{{ url_for('relatorio_html') }}">Visualizar Relatório HTML</a> |
+        <a href="{{ url_for('relatorio_excel') }}">Exportar Excel</a> |
+        <a href="{{ url_for('relatorio_pdf') }}">Exportar PDF</a> |
+        <a href="{{ url_for('logout') }}">Sair</a>
+    </nav>
+    <br>
+    <table border="1" cellpadding="5" cellspacing="0">
+        <thead style="background-color: #00A19A; color: white;">
             <tr>
                 <th>ID</th>
                 <th>Modelo</th>
@@ -30,7 +37,7 @@
                 <td>{{ equipamento.cliente_nome }}</td>
                 <td>{{ equipamento.data_instalacao }}</td>
                 <td>
-                    <a href="{{ url_for('delete_item', id=equipamento.id) }}">Excluir</a>
+                    <a href="{{ url_for('delete_item', equipamento_id=equipamento.id) }}" onclick="return confirm('Tem certeza que deseja excluir este equipamento?');">Excluir</a>
                 </td>
             </tr>
             {% endfor %}

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Relatório de Equipamentos</title>
+</head>
+<body>
+    <h1>Relatório de Equipamentos</h1>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Modelo</th>
+                <th>Nº de Série</th>
+                <th>Cliente</th>
+                <th>Data</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for equipamento in equipamentos %}
+            <tr>
+                <td>{{ equipamento.id }}</td>
+                <td>{{ equipamento.modelo }}</td>
+                <td>{{ equipamento.numero_serie }}</td>
+                <td>{{ equipamento.cliente_nome }}</td>
+                <td>{{ equipamento.data_instalacao }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <br>
+    <a href="{{ url_for('index') }}">Voltar</a>
+</body>
+</html>

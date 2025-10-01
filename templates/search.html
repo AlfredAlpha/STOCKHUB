@@ -5,6 +5,38 @@
     <title>Buscar Equipamento</title>
 </head>
 <body>
-    <h1>Funcionalidade de busca ainda em desenvolvimento</h1>
+    <h1>Buscar Equipamento</h1>
+    <form method="POST">
+        <input type="text" name="termo" placeholder="Modelo ou Cliente">
+        <button type="submit">Buscar</button>
+    </form>
+
+    {% if resultados %}
+        <h2>Resultados</h2>
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Modelo</th>
+                    <th>Nº Série</th>
+                    <th>Cliente</th>
+                    <th>Data</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for r in resultados %}
+                <tr>
+                    <td>{{ r.id }}</td>
+                    <td>{{ r.modelo }}</td>
+                    <td>{{ r.numero_serie }}</td>
+                    <td>{{ r.cliente_nome }}</td>
+                    <td>{{ r.data_instalacao }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
+    <br>
+    <a href="{{ url_for('index') }}">Voltar</a>
 </body>
 </html>
